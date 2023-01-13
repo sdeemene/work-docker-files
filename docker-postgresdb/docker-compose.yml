@@ -1,0 +1,28 @@
+version: "3.7"
+                                                                                                                                                                                                                                                                                                                    
+# Services
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - PGDATA=/test_data
+      - POSTGRES_DB=postgres_db_data
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./postgres_db_data:/var/lib/postgresql/data
+  
+  adminer:
+    image: adminer
+    environment:
+      ADMINER_DEFAULT_DB_DRIVER: pgsql
+      ADMINER_DEFAULT_DB_HOST: postgres
+      ADMINER_DEFAULT_DB_NAME: adminer
+    ports:
+      - 9091:9091
+   
+
+# docker compose up -d                                                                                                                                                     
